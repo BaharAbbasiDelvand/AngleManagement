@@ -1,0 +1,1412 @@
+import Html exposing (Html)
+import Html.Attributes exposing (src)
+
+myShapes model =
+    case model.state of
+        Home  ->
+            [ 
+              home
+            ]
+        Tut1  ->
+            [tut1
+            , button orange "back"  TutorialToTutorialPage |> move (35,50)
+            ]
+        Tut5  ->
+            [ text "Tut5"
+                  |> centered
+                  |> filled black
+              , button lightBlue "back"  TutorialToTutorialPage |> move (65,55)
+            ]
+        Tut2  ->
+            [tut2
+            , button lightBlue "back"  TutorialToTutorialPage |> move (65,55)
+            ]
+        TutorialPage  ->
+            [ tutorialPage
+            ]
+        Tut3  ->
+            [ text "Tut3"
+                  |> centered
+                  |> filled black
+              , button lightBlue "back"  TutorialToTutorialPage |> move (65,55)
+            ]
+        Tut4  ->
+            [ text "Tut4"
+                  |> centered
+                  |> filled black
+              , button lightBlue "back"  TutorialToTutorialPage |> move (65,55)
+            ]
+        Tut6  ->
+            [ text "Tut6"
+                  |> centered
+                  |> filled black
+              , button lightBlue "back"  TutorialToTutorialPage |> move (65,55)
+            ]
+        Tut7  ->
+            [ text "Tut7"
+                  |> centered
+                  |> filled black
+              , button lightBlue "back"  TutorialToTutorialPage |> move (65,55)
+            ]
+        LevelPage ->
+            [  
+              levelPage
+            ]
+        Level1  ->
+            [ 
+              lvl1
+            , protractor |>move model.pos |> notifyMouseDown MouseDown
+            , case model.mouseState of 
+                    Released -> group []
+                    Dragging -> rect 185 125 |> ghost
+                                             |> notifyMouseMoveAt Drag
+                                             |> notifyMouseUp MouseUp
+                                             |> notifyLeave MouseUp
+            , button orange "45°" LvlFail |> move (-40,-50)
+            , button orange "50°" LvlFail |> move (-10,-50)
+            , button orange "40°" LvlSucess |> move (20,-50)
+            , button orange "35°" LvlFail |> move (50,-50)
+            , button orange "Back"  LevelToLevelPage |> move (80,20)
+            , button orange "HINT"  LvlHint |> move (-80,20)
+            
+            ]
+        Level2  ->
+            [ lvl2
+            , protractor |>move model.pos |> notifyMouseDown MouseDown
+            , case model.mouseState of 
+                    Released -> group []
+                    Dragging -> rect 185 125 |> ghost
+                                             |> notifyMouseMoveAt Drag
+                                             |> notifyMouseUp MouseUp
+                                             |> notifyLeave MouseUp
+            , button orange "88°" LvlFail |> move (-40,-50)
+            , button orange "92°" LvlFail |> move (-10,-50)
+            , button orange "90°" LvlSucess |> move (20,-50)
+            , button orange "79°" LvlFail |> move (50,-50)
+            , button orange "Back"  LevelToLevelPage |> move (80,20)
+            , button orange "HINT"  LvlHint |> move (-80,20)
+            ]
+        Level3  ->
+            [ lvl3
+             , protractor |>move model.pos |> notifyMouseDown MouseDown
+             , case model.mouseState of 
+                    Released -> group []
+                    Dragging -> rect 185 125 |> ghost
+                                             |> notifyMouseMoveAt Drag
+                                             |> notifyMouseUp MouseUp
+                                             |> notifyLeave MouseUp
+            , button orange "145°" LvlFail |> move (-40,-50)
+            , button orange "130°" LvlFail |> move (-10,-50)
+            , button orange "140°" LvlFail |> move (20,-50)
+            , button orange "135°" LvlSucess |> move (50,-50)
+            , button orange "Back"  LevelToLevelPage |> move (80,20)
+            , button orange "HINT"  LvlHint |> move (-80,20)
+            ]
+        Level4  ->
+            [lvl4
+            , protractor |>move model.pos |> notifyMouseDown MouseDown
+             , case model.mouseState of 
+                    Released -> group []
+                    Dragging -> rect 185 125 |> ghost
+                                             |> notifyMouseMoveAt Drag
+                                             |> notifyMouseUp MouseUp
+                                             |> notifyLeave MouseUp
+            , button orange "295°" LvlFail |> move (-40,-50)
+            , button orange "280°" LvlFail |> move (-10,-50)
+            , button orange "315°" LvlSucess |> move (20,-50)
+            , button orange "305°" LvlFail |> move (50,-50)
+            , button orange "Back"  LevelToLevelPage |> move (80,20)
+            , button orange "HINT"  LvlHint |> move (-80,20)
+            ]
+        Level5  ->
+            [lvl5
+            , protractor |>move model.pos |> notifyMouseDown MouseDown
+            , case model.mouseState of 
+                    Released -> group []
+                    Dragging -> rect 185 125 |> ghost
+                                             |> notifyMouseMoveAt Drag
+                                             |> notifyMouseUp MouseUp
+                                             |> notifyLeave MouseUp
+            , button orange "65°" LvlFail |> move (-40,-50)
+            , button orange "50°" LvlFail |> move (-10,-50)
+            , button orange "60°" LvlSucess |> move (20,-50)
+            , button orange "55°" LvlFail |> move (50,-50)
+            , button orange "Back"  LevelToLevelPage |> move (80,20)
+            , button orange "HINT"  LvlHint |> move (-80,20)
+            ]
+        Level7  ->
+            [lvl7
+            , protractor |>move model.pos |> notifyMouseDown MouseDown
+            , case model.mouseState of 
+                    Released -> group []
+                    Dragging -> rect 185 125 |> ghost
+                                             |> notifyMouseMoveAt Drag
+                                             |> notifyMouseUp MouseUp
+                                             |> notifyLeave MouseUp
+            , button2 35 orange "Equilateral"  LvlFail |> move (-65,-50)
+            , button2 35 orange "Isosceles" LvlSucess |> move (-20,-50)
+            , button2 35 orange "Obtuse Angled" LvlFail |> move (25,-50)
+            , button2 35 orange "Right Angled" LvlFail |> move (70,-50)
+            , button orange "Back"  LevelToLevelPage |> move (80,20)
+            , button orange "HINT"  LvlHint |> move (-80,20)
+            ]
+        Level9  ->
+            [lvl9
+            , protractor |>move model.pos |> notifyMouseDown MouseDown
+            , case model.mouseState of 
+                    Released -> group []
+                    Dragging -> rect 185 125 |> ghost
+                                             |> notifyMouseMoveAt Drag
+                                             |> notifyMouseUp MouseUp
+                                             |> notifyLeave MouseUp
+            , button2 43 orange "Right & Isosceles"  LvlSucess |> move (-65,-50)
+            , button2 43 orange "Isosceles"  LvlFail |> move (-20,-50)
+            , button2 43 orange "Obtuse Angled" LvlFail |> move (25,-50)
+            , button2 43 orange "Right Angled" LvlFail |> move (70,-50)
+            , button orange "Back"  LevelToLevelPage |> move (80,20)
+            , button orange "HINT"  LvlHint |> move (-80,20)
+                  
+            ]       
+            
+        Level6  ->
+            [ lvl6
+            , protractor |>move model.pos |> notifyMouseDown MouseDown
+            , case model.mouseState of 
+                    Released -> group []
+                    Dragging -> rect 185 125 |> ghost
+                                             |> notifyMouseMoveAt Drag
+                                             |> notifyMouseUp MouseUp
+                                             |> notifyLeave MouseUp
+            , button orange "162°" LvlSucess |> move (-40,-50)
+            , button orange "164°" LvlFail |> move (-10,-50)
+            , button orange "160°" LvlFail |> move (20,-50)
+            , button orange "158°" LvlFail |> move (50,-50)
+            , button orange "Back"  LevelToLevelPage |> move (80,20)
+            , button orange "HINT"  LvlHint |> move (-80,20)
+            ]
+        Level8  ->
+            [ lvl8
+            , protractor |>move model.pos |> notifyMouseDown MouseDown
+            , case model.mouseState of 
+                    Released -> group []
+                    Dragging -> rect 185 125 |> ghost
+                                             |> notifyMouseMoveAt Drag
+                                             |> notifyMouseUp MouseUp
+                                             |> notifyLeave MouseUp
+            , button2 35 orange "Equilateral"  LvlFail |> move (-65,-50)
+            , button2 35 orange "Isosceles"  LvlFail |> move (-20,-50)
+            , button2 35 orange "Obtuse Angled" LvlSucess |> move (25,-50)
+            , button2 35 orange "Right Angled" LvlFail |> move (70,-50)
+            , button orange "Back"  LevelToLevelPage |> move (80,20)
+            , button orange "HINT"  LvlHint |> move (-80,20)
+                  
+            ]       
+        Lvl1F  ->
+           [ lvl1
+           , text "Incorrect : The answer was 40 degrees"
+               |> customFont "cursive" 
+               |> size 10 
+               |> centered 
+               |> filled red
+               |> move (0,21)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)
+           
+           ]
+           
+        Lvl1S ->
+           [ lvl1
+           , text "Correct!"
+               |> customFont "cursive" 
+               |> size 10 
+               |> centered 
+               |> filled darkGreen
+               |> move (0,21)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)
+           ]
+        Lvl2F ->
+           [ lvl2
+           , text "Incorrect : The answer was 90 degrees"
+               |> customFont "cursive" 
+               |> size 10 
+               |> centered 
+               |> filled red
+               |> move (0,21)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)
+           ]
+        Lvl2S ->
+           [ lvl2
+           , text "Correct!"
+               |> customFont "cursive" 
+               |> size 10 
+               |> centered 
+               |> filled darkGreen
+               |> move (0,21)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)
+           ]
+        Lvl3S ->
+          [ lvl3
+           ,text "Correct!"
+               |> customFont "cursive" 
+               |> size 10 
+               |> centered 
+               |> filled darkGreen
+               |> move (0,21)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)
+          ]
+        Lvl3F ->
+          [lvl3
+          ,text "Incorrect : The answer was 135 degrees"
+               |> customFont "cursive" 
+               |> size 10 
+               |> centered 
+               |> filled red
+               |> move (0,21)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)
+           ]
+        Lvl4F ->
+          [lvl4
+          ,text "Incorrect : The answer was 315 degrees"
+               |> customFont "cursive" 
+               |> size 10 
+               |> centered 
+               |> filled red
+               |> move (0,23)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)
+           ]  
+        Lvl4S ->
+          [ lvl4
+           ,text "Correct!"
+               |> customFont "cursive" 
+               |> size 10 
+               |> centered 
+               |> filled darkGreen
+               |> move (0,23)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)
+          ]
+        Lvl5F ->
+          [lvl5
+          ,text "Incorrect : The answer was 60 degrees"
+               |> customFont "cursive" 
+               |> size 10 
+               |> centered 
+               |> filled red
+               |> move (0,23)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)
+           ]  
+        Lvl5S ->
+          [ lvl5
+           ,text "Correct!"
+               |> customFont "cursive" 
+               |> size 10 
+               |> centered 
+               |> filled darkGreen
+               |> move (-12,23)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)  
+          ]
+        
+        Lvl6F ->
+          [lvl6
+          ,text "Incorrect : The answer was 162 degrees"
+               |> customFont "cursive" 
+               |> size 10 
+               |> centered 
+               |> filled red
+               |> move (0,23)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)
+           ]  
+        Lvl6S ->
+          [ lvl6
+           ,text "Correct!"
+               |> customFont "cursive" 
+               |> size 10 
+               |> centered 
+               |> filled darkGreen
+               |> move (-1,23)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)  
+          ]   
+        Lvl7F ->
+          [lvl7
+          ,text "Incorrect : The answer was I-sauce-less"
+               |> customFont "cursive" 
+               |> size 10 
+               |> centered 
+               |> filled red
+               |> move (0,23)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)
+           ]  
+        Lvl7S ->
+          [ lvl7
+           ,text "Correct!"
+               |> customFont "cursive" 
+               |> size 10 
+               |> centered 
+               |> filled darkGreen
+               |> move (-1,23)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)  
+          ]
+        Lvl8F ->
+          [lvl8
+          ,text "Incorrect : The answer was Obtuse Angled"
+               |> customFont "cursive" 
+               |> size 9 
+               |> centered 
+               |> filled red
+               |> move (0,23)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)
+           ]  
+        Lvl8S ->
+          [ lvl8
+           ,text "Correct!"
+               |> customFont "cursive" 
+               |> size 10 
+               |> centered 
+               |> filled darkGreen
+               |> move (-1,23)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)  
+          ]
+        Lvl9F ->
+          [lvl9
+          ,text "Incorrect : The answer was Right & Isoceles"
+               |> customFont "cursive" 
+               |> size 9 
+               |> centered 
+               |> filled red
+               |> move (0,23)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)
+           ]  
+        Lvl9S ->
+          [ lvl9
+           ,text "Correct!"
+               |> customFont "cursive" 
+               |> size 10 
+               |> centered 
+               |> filled darkGreen
+               |> move (-1,23)
+           , button orange "back"  LevelToLevelPage |> move (0,-50)  
+          ]
+        Lvl1H ->
+          [lvl1h
+          , rectangle 300 30 |> filled orange |> move (0,50)
+          , button grey "BACK"  LvlHint |> move (0,50)
+          ]
+        Lvl2H ->
+          [ lvl2h
+          , rectangle 300 30 |> filled orange |> move (0,50)
+          , button grey "BACK"  LvlHint |> move (0,50)
+          
+          ]
+        Lvl3H ->
+          [ lvl3h
+          , rectangle 300 30 |> filled orange |> move (0,50)
+          , button grey "BACK"  LvlHint |> move (0,50)
+          ]
+        Lvl4H ->
+          [ lvl4h
+          , rectangle 300 30 |> filled orange |> move (0,50)
+          , button grey "BACK"  LvlHint |> move (0,50)
+          ]
+        Lvl5H ->
+          [ lvl5h
+          , rectangle 300 30 |> filled orange |> move (0,50)
+          , button grey "BACK"  LvlHint |> move (0,50)
+          ]
+        Lvl6H ->
+          [ lvl6
+          , rectangle 300 30 |> filled orange |> move (0,50)
+          , button grey "BACK"  LvlHint |> move (0,50)
+          ]  
+        Lvl7H ->
+          [ lvl7h
+          , rectangle 300 30 |> filled orange |> move (0,50)
+          , button grey "BACK"  LvlHint |> move (0,50)
+          ]  
+        Lvl8H ->
+          [ lvl8
+          , rectangle 300 30 |> filled orange |> move (0,50)
+          , button grey "BACK"  LvlHint |> move (0,50)
+          ]  
+        Lvl9H ->
+          [ lvl9h
+          , rectangle 300 30 |> filled orange |> move (0,50)
+          , button grey "BACK"  LvlHint |> move (0,50)
+          ]  
+
+
+
+type Msg = Tick Float GetKeyState
+         | Drag (Float, Float) 
+         | MouseDown 
+         | MouseUp
+         | HomeToTutorialPage
+         | TutorialPageToHome
+         | TutorialPageToTutorial1
+         | TutorialToTutorialPage
+         | TutorialPageToTutorial2
+         | TutorialPageToTutorial3
+         | TutorialPageToTutorial4
+         | TutorialPageToTutorial5
+         | TutorialPageToTutorial7
+         | TutorialPageToTutorial6
+         | LevelPageToHome
+         | HomeToLevelPage
+         | LevelToLevelPage
+         | LevelPageToLevel1
+         | LevelPageToLevel3
+         | LevelPageToLevel2
+         | LevelPageToLevel4
+         | LevelPageToLevel5
+         | LevelPageToLevel6
+         | LevelPageToLevel9
+         | LevelPageToLevel8
+         | LevelPageToLevel7
+         | LvlFail
+         | LvlSucess
+         | LvlHint
+
+type State = Home 
+           | Tut1 
+           | Tut5 
+           | Tut2 
+           | TutorialPage 
+           | Tut3 
+           | Tut4
+           | Tut6
+           | Tut7
+           | LevelPage 
+           | Level1 
+           | Level2 
+           | Level3 
+           | Level4 
+           | Level5 
+           | Level7 
+           | Level9 
+           | Level6 
+           | Level8
+           | Lvl1F
+           | Lvl1S
+           | Lvl1H
+           | Lvl2F
+           | Lvl2S
+           | Lvl2H
+           | Lvl3S
+           | Lvl3F
+           | Lvl3H
+           | Lvl4S
+           | Lvl4F
+           | Lvl4H
+           | Lvl5S
+           | Lvl5F
+           | Lvl5H
+           | Lvl6S
+           | Lvl6F
+           | Lvl6H
+           | Lvl7S
+           | Lvl7F
+           | Lvl7H
+           | Lvl8S
+           | Lvl8F
+           | Lvl8H
+           | Lvl9S
+           | Lvl9F
+           | Lvl9H
+           
+           
+type MouseState = Released | Dragging
+           
+type Colors = Blue | Green | Orange |Lblue | Yellow
+colour c = case c of
+               Green  -> rgb 171 204 55
+               Orange -> rgb 244 123 32
+               Blue   -> rgb 32 47 76
+               Lblue  -> rgb 110 203 208
+               Yellow  -> rgb 255 221 71
+
+update msg model =
+    case msg of
+        Tick t _ ->
+            { model | time = t }
+            
+        Drag (x, y)-> { model | pos = (x,y)}
+                     
+        MouseDown -> { model | mouseState = Dragging}
+
+        MouseUp -> { model | mouseState = Released }
+        
+        HomeToTutorialPage ->
+            case model.state of
+                Home  ->
+                    { model | state = TutorialPage  }
+                otherwise ->
+                    model
+        TutorialPageToHome ->
+            case model.state of
+                TutorialPage  ->
+                    { model | state = Home  }
+                otherwise ->
+                    model
+        TutorialPageToTutorial1 ->
+            case model.state of
+                TutorialPage  ->
+                    { model | state = Tut1  }
+                otherwise ->
+                    model
+        TutorialToTutorialPage ->
+             { model | state = TutorialPage  }
+        TutorialPageToTutorial2 ->
+            case model.state of
+                TutorialPage  ->
+                    { model | state = Tut2  }
+                otherwise ->
+                    model
+        TutorialPageToTutorial3 ->
+            case model.state of
+                TutorialPage  ->
+                    { model | state = Tut3  }
+                otherwise ->
+                    model
+        TutorialPageToTutorial4 ->
+            case model.state of
+                TutorialPage  ->
+                    { model | state = Tut4  }
+                otherwise ->
+                    model
+        TutorialPageToTutorial5 ->
+            case model.state of
+                TutorialPage  ->
+                    { model | state = Tut5  }
+                otherwise ->
+                    model
+        TutorialPageToTutorial6 ->
+            case model.state of
+                TutorialPage  ->
+                    { model | state = Tut6  }
+                otherwise ->
+                    model
+        TutorialPageToTutorial7 ->
+            case model.state of
+                TutorialPage  ->
+                    { model | state = Tut7  }
+                otherwise ->
+                    model
+        LevelPageToHome ->
+            case model.state of
+                LevelPage  ->
+                    { model | state = Home  }
+                otherwise ->
+                    model
+        HomeToLevelPage ->
+            case model.state of
+                Home  ->
+                    { model | state = LevelPage  }
+                otherwise ->
+                    model
+        LevelToLevelPage ->
+              { model | state = LevelPage  }             
+        LevelPageToLevel1 ->
+            case model.state of
+                LevelPage  ->
+                    { model | state = Level1  }
+                otherwise ->
+                    model
+        LevelPageToLevel3 ->
+            case model.state of
+                LevelPage  ->
+                    { model | state = Level3  }
+                otherwise ->
+                    model
+        LevelPageToLevel2 ->
+            case model.state of
+                LevelPage  ->
+                    { model | state = Level2  }
+                otherwise ->
+                    model
+        LevelPageToLevel4 ->
+            case model.state of
+                LevelPage  ->
+                    { model | state = Level4  }
+                otherwise ->
+                    model
+        LevelPageToLevel5 ->
+            case model.state of
+                LevelPage  ->
+                    { model | state = Level5  }
+                otherwise ->
+                    model
+        LevelPageToLevel6 ->
+            case model.state of
+                LevelPage  ->
+                    { model | state = Level6  }
+                otherwise ->
+                    model
+        LevelPageToLevel9 ->
+            case model.state of
+                LevelPage  ->
+                    { model | state = Level9  }
+                otherwise ->
+                    model
+        LevelPageToLevel8 ->
+            case model.state of
+                LevelPage  ->
+                    { model | state = Level8  }
+                otherwise ->
+                    model
+        LevelPageToLevel7 ->
+            case model.state of
+                LevelPage  ->
+                    { model | state = Level7  }
+                otherwise ->
+                    model
+        LvlFail->
+            case model.state of
+                Level1 ->
+                    { model | state = Lvl1F  }
+                Level2 ->
+                    { model | state = Lvl2F  }
+                Level3 ->
+                    { model | state = Lvl3F  }
+                Level4 ->
+                    { model | state = Lvl4F  }
+                Level5 ->
+                    { model | state = Lvl5F  }
+                Level6 ->
+                    { model | state = Lvl6F  }
+                Level7 ->
+                    { model | state = Lvl7F  }
+                Level8 ->
+                    { model | state = Lvl8F  }
+                Level9 ->
+                    { model | state = Lvl9F  }    
+                otherwise ->
+                    model
+        LvlSucess->
+          case model.state of
+                Level1 ->
+                    { model | state = Lvl1S  }
+                Level2->
+                    { model | state = Lvl2S  }
+                Level3 ->
+                    { model | state = Lvl3S  }
+                Level4 ->
+                    { model | state = Lvl4S  }
+                Level5 ->
+                    { model | state = Lvl5S  }
+                Level6 ->
+                    { model | state = Lvl6S  }
+                Level7 ->
+                    { model | state = Lvl7S  }
+                Level8 ->
+                    { model | state = Lvl8S  }
+                Level9 ->
+                    { model | state = Lvl9S  }    
+                otherwise ->
+                    model
+        LvlHint->
+          case model.state of
+                Level1 ->
+                    { model | state = Lvl1H  }
+                Level2->
+                    { model | state = Lvl2H  }
+                Level3 ->
+                    { model | state = Lvl3H  }
+                Level4 ->
+                    { model | state = Lvl4H  }
+                Level5 ->
+                    { model | state = Lvl5H  }
+                Level6 ->
+                    { model | state = Lvl6H  }
+                Level7 ->
+                    { model | state = Lvl7H  }
+                Level8 ->
+                    { model | state = Lvl8H  }
+                Level9 ->
+                    { model | state = Lvl9H  }    
+                Lvl1H ->
+                    { model | state = Level1  }
+                Lvl2H->
+                    { model | state = Level2  }
+                Lvl3H ->
+                    { model | state = Level3  }
+                Lvl4H ->
+                    { model | state = Level4  }
+                Lvl5H ->
+                    { model | state = Level5  }
+                Lvl6H ->
+                    { model | state = Level6  }
+                Lvl7H ->
+                    { model | state = Level7  }
+                Lvl8H ->
+                    { model | state = Level8  }
+                Lvl9H ->
+                    { model | state = Level9  }   
+                otherwise ->
+                    model
+type alias Model =
+    { time : Float
+    , state : State
+    , mouseState : MouseState
+    , pos : (Float,Float)
+    }
+    
+init : Model
+init = { time = 0 
+       , state = Home
+       , mouseState = Released
+       , pos = (-18.5,-27)
+       }
+----------------------------------------------------BUTTON FUNCTION TO CREATE BUTTONS-------------------------------------
+button clr txt msg =
+                    group [ roundedRect 20 10 5
+                                |> filled clr
+                            ,text txt
+                                  |> customFont "cursive"
+                                  |> centered
+                                  |> size 5
+                                  |> filled black
+                                  |> move(0,-2)
+                          ]
+                          |> notifyTap msg
+                          
+button2 len clr txt msg =
+                    group [ roundedRect len 10 5
+                                |> filled clr
+                            ,text txt
+                                  |> customFont "cursive"
+                                  |> centered
+                                  |> size 5
+                                  |> filled black
+                                  |> move(0,-2)
+                          ]
+                          |> notifyTap msg
+
+
+       
+----------------------------------------------------------HOME PAGE TEMPLATE----------------------------------------------
+
+       
+home = group 
+        [ 
+          square 250
+            |> filled ( colour Blue)
+          , rect 250 50
+            |> filled (rgb 49 34 112)
+            |> rotate (degrees 30)
+            |> move (0,20)
+         , rect 250 10
+            |> filled (rgb 49 34 112)
+            |> rotate (degrees 30)
+            |> move (0,-30)
+         ,rect 3 200
+            |> filled (colour Lblue)
+            |> move (90,0)
+         ,rect 3 200
+            |> filled (colour Lblue)
+            |> move (-90,0)
+         ,rect 260 3
+            |> filled (colour Lblue)
+            |> move (0,60)
+         ,rect 260 3
+            |> filled (colour Lblue)
+            |> move (0,-60)
+         ,roundedRect 140 40 5 
+            |> filled (colour Orange)
+            |> move (0,10)
+         ,roundedRect 130 30 5
+            |> filled (colour Yellow)
+            |> move(0,10)
+         ,text "Angle Management"
+            |> customFont "cursive"
+            |> filled darkCharcoal
+            |> move (-52,5)
+            |> scale 1.2
+         ,ngon 5 15
+            |> filled (rgb 245 240 230)
+            |> move (-50,-35)
+         ,playButton  
+         ,wedge 15 0.75
+            |> filled (rgb 245 240 230)
+            |> move (50 ,-35)
+         ,button2 33 (rgb 230 125 50) "Topic Review" HomeToTutorialPage
+                  |> move (60,50)
+        ]
+
+playButton = group
+              [
+          ngon 3 13
+            |> filled (colour Orange)
+            |> scaleX 2
+            |> move (0,-30)
+            |> notifyTap  HomeToLevelPage
+         ,ngon 3 13
+            |> outlined (solid 1) (rgb 209 29 83)--pink--(colour Lblue)
+            |> scaleX 2
+            |> move (0,-30)
+            |> notifyTap  HomeToLevelPage
+         ,text "Play !"
+            |> customFont "cursive"
+            |> filled darkCharcoal
+            |> move (-15,-42)
+            |> scale 0.8
+            |> notifyTap  HomeToLevelPage
+              ]
+        
+-------------------------------------------------------------LEVEL PAGE-----------------------------------------------
+
+levelPage = group
+              [
+              square 250
+                |> filled ( colour Blue)
+                
+              , rect 250 50
+                  |> filled (rgb 49 34 112)
+                  |> rotate (degrees 30)
+                  |> move (0,20)
+                  
+              , rect 250 10
+                  |> filled (rgb 49 34 112)
+                  |> rotate (degrees 30)
+                  |> move (0,-30)
+                  
+              ,rect 3 200
+                  |> filled (colour Lblue)
+                  |> move (90,0)
+                  
+             ,rect 3 200
+                  |> filled (colour Lblue)
+                  |> move (-90,0)
+                  
+             ,rect 260 3
+                  |> filled (colour Lblue)
+                  |> move (0,60)
+                   
+             ,rect 260 3
+                  |> filled (colour Lblue)
+                  |> move (0,-60)
+                  
+             , text "LevelPage"
+                  |> filled white
+                  |> move (-20,45)
+                  
+             ,button (rgb 230 125 50) "Back" LevelPageToHome
+                  |> move (65,50)
+                   
+             ,button (rgb 121 161 255) "Level 1" LevelPageToLevel1
+                  |> move (-50,30)
+                   
+             ,button (rgb 121 161 255) "Level 2" LevelPageToLevel2
+                  |> move (-50,-5)
+                   
+             ,button (rgb 121 161 255) "Level 3" LevelPageToLevel3
+                  |> move (-50,-40)
+                   
+             ,button (rgb 121 161 255) "Level 4" LevelPageToLevel4
+                  |> move (0,30)
+                   
+             ,button (rgb 121 161 255) "Level 5" LevelPageToLevel5
+                  |> move (0,-5)
+                   
+             ,button (rgb 121 161 255) "Level 6" LevelPageToLevel6
+                  |> move (0,-40)
+                   
+             ,button (rgb 121 161 255) "Level 7" LevelPageToLevel7
+                  |> move (50,30)
+                   
+             ,button (rgb 121 161 255) "Level 8" LevelPageToLevel8
+                  |> move (50,-5)
+                   
+             ,button (rgb 121 161 255) "Level 9" LevelPageToLevel9
+                  |> move (50,-40)
+              ]
+              
+
+-----------------------------------------------------------LEVEL TEMPLATES--------------------------------------------    
+lvl1 = group
+        [ rectangle 300 300 |> filled grey
+        , rectangle 300 30 |> filled orange |> move (0,50)
+        , curve (-7.346,17.188) [Pull (2.5342,18.547) (-1.224,9.1071)] |>outlined (solid 0.5) orange |>move (-14,-29.5)
+        , openPolygon [ (6,0),(0,0),(5,4.33)] |> outlined (solid 0.11) blue |> scale 8 |>move (-30,-20)
+        , text "Measure the angle below by dragging the protractor."
+           |> customFont "cursive" 
+           |> size 7.8 
+           |> centered 
+           |> filled black
+           |> move (0,50)
+        ]
+        
+lvl2 = group
+      [   rectangle 300 300 |> filled grey
+        , rectangle 300 30 |> filled orange |> move (0,50)
+        , curve (-7.346,17.188) [Pull (2.5342,18.547) (-1.224,9.1071)] |>outlined (solid 0.5) orange |>move (-18,-39.5)
+        , openPolygon [ (6,0),(0,0),(0,6)] |> outlined (solid 0.11) blue |> scale 8 |>move (-25,-30)
+        , text "Measure the angle below by dragging the protractor."
+           |> customFont "cursive" 
+           |> size 7.8 
+           |> centered 
+           |> filled black
+           |> move (0,50)
+      ]
+lvl3 = group
+      [   rectangle 300 300 |> filled grey
+        , rectangle 300 30 |> filled orange |> move (0,50)
+        , curve (-7.346,17.188) [Pull (2.5342,18.547) (-1.224,9.1071)] |>outlined (solid 0.5) orange |> rotate (pi/8)|>move (-16.3,-37.5)  
+        , openPolygon [ (6,0),(0,0),(-4,4)] |> outlined (solid 0.11) blue |> scale 8 |>move (-25,-30)
+        , text "Measure the angle below by dragging the protractor."
+           |> customFont "cursive" 
+           |> size 7.8 
+           |> centered 
+           |> filled black
+           |> move (0,50)
+      ]
+      
+lvl4 = group
+      [   rectangle 300 300 |> filled grey
+        , rectangle 300 30 |> filled orange |> move (0,50)
+        , curve (0,-12.26) [Pull (-5.757,-10.87) (-5.594,-15.39),Pull (-7.616,-18.76) (-2.237,-20.76),Pull (2.9113,-20.63) (3.5804,-16.06)] |>outlined (solid 0.5) orange |>move (-22.1,4)  
+        , openPolygon [ (6,0),(0,0),(4,4)] |> outlined (solid 0.11) blue |> scale 8 |>move (-25,-12)
+        , text "Measure the angle below by dragging the protractor."
+           |> customFont "cursive" 
+           |> size 7.8 
+           |> centered 
+           |> filled black
+           |> move (0,50)
+      ]
+            
+lvl5 = group
+      [   rectangle 300 300 |> filled grey
+        , rectangle 300 30 |> filled orange |> move (0,50)
+        , curve (-7.346,17.188) [Pull (2.5342,18.547) (-1.224,9.1071)] |>outlined (solid 0.5) orange |> rotate  (pi/1.9)|>move (14,-5.6)  
+        , openPolygon [ (-6,0),(0,0),(-3,5)] |> outlined (solid 0.11) blue |> scale 7 |>move (10,-15)
+        , text "Measure the angle below by dragging the protractor."
+           |> customFont "cursive" 
+           |> size 7.8 
+           |> centered 
+           |> filled black
+           |> move (0,50)
+      ]
+      
+lvl6 = group
+      [   rectangle 300 300 |> filled grey
+        , rectangle 300 30 |> filled orange |> move (0,50)
+        , curve (-7.346,17.188) [Pull (2.5342,18.547) (-1.224,9.1071)] |>outlined (solid 0.5) orange |> rotate  (pi/3)|>move (23,-17)  
+        , openPolygon [ (-6,0),(0,0),(6,2)] |> outlined (solid 0.11) blue |> scale 7 |>move (10,-15)
+        , text "Measure the angle below by dragging the protractor."
+           |> customFont "cursive" 
+           |> size 7.8 
+           |> centered 
+           |> filled black
+           |> move (0,50)
+      ]      
+
+lvl7 = group
+      [   rectangle 300 300 |> filled grey
+        , rectangle 300 30 |> filled orange |> move (0,50)
+        , polygon [ (-6,0),(0,6),(6,0)] |> outlined (solid 0.11) blue |> scale 6 |>move (2,-23)
+        , text "Determine the type of triangle by measuring angles"
+           |> customFont "cursive" 
+           |> size 7.8 
+           |> centered 
+           |> filled black
+           |> move (0,54)
+        , text "by dragging the protractor"
+           |> customFont "cursive" 
+           |> size 7.8 
+           |> centered 
+           |> filled black
+           |> move (0,42)
+       ]
+      
+lvl8 = group
+      [   rectangle 300 300 |> filled grey
+        , rectangle 300 30 |> filled orange |> move (0,50)
+        , polygon [ (-6,0),(-8,6),(6,0)] |> outlined (solid 0.11) blue |> scale 6 |>move (2,-23)
+        , text "Determine the type of triangle by measuring angles"
+           |> customFont "cursive" 
+           |> size 7.8 
+           |> centered 
+           |> filled black
+           |> move (0,54)
+        , text "by dragging the protractor"
+           |> customFont "cursive" 
+           |> size 7.8 
+           |> centered 
+           |> filled black
+           |> move (0,42)
+      ]
+lvl9 = group
+      [   rectangle 300 300 |> filled grey
+        , rectangle 300 30 |> filled orange |> move (0,50)
+        , polygon [ (0,0),(0,8),(8,0)] |> outlined (solid 0.11) blue |> scale 6 |>move (-10,-35)
+        , text "Determine the type of triangle by measuring angles"
+           |> customFont "cursive" 
+           |> size 7.8 
+           |> centered 
+           |> filled black
+           |> move (0,54)
+        , text "by dragging the protractor"
+           |> customFont "cursive" 
+           |> size 7.8 
+           |> centered 
+           |> filled black
+           |> move (0,42)
+      ]
+------------------------------------------------------PROTRACTOR------------------------------------------------------------          
+protractor = group
+             [
+              move imageMove <| scale imageScale <| html imageWidth imageHeight <| Html.img [Html.Attributes.src imageUrl] []
+             ]
+imageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Rapporteur_180deg.svg/1200px-Rapporteur_180deg.svg.png"
+imageWidth = 2000
+imageHeight = 2000
+imageScale = 0.07
+imageMove = (-40,30)
+--------------------------------------------------HINT PAGEs-----------------------------------------------------------
+
+lvl1h=group
+      [ lvl1
+          , rectangle 300 30 |> filled orange |> move (0,50)
+          ,circle 1 |> filled red |>move (-29.9,-20)
+          ,text "1: Place the center of the protractor on the red dot" |> customFont "cursive" |> size 7 |> centered  |>filled black |> move (0,25)
+          ,text "2: Measure from here to here and read the blue scale" |> customFont "cursive" |> size 7 |> centered  |>filled black |> move (0,-45)
+          ,curve (-22.60,-19.87) [Pull (-9.533,-17.47) (-6.265,-6.671)] |>outlined (solid 1) black |> move (5,-20)
+          ,curve (-22.60,-19.87) [Pull (-3.377,8.8289) (-37.59,21.972)] |>outlined (solid 1) black |> move (35,-20) 
+          ,triangle 5 |>filled black |>rotate 1.2 |> move(-1,-26)
+          ,triangle 5 |>filled black |>rotate 0.5
+      ]
+lvl2h=group
+      [ lvl2
+      ,circle 1 |> filled red |>move (-25,-30)
+      ,text "1: Place the center of the protractor on the red dot" |> customFont "cursive" |> size 7 |> centered  |>filled black |> move (0,25)
+      ,text "2: Measure in this Direction" |> customFont "cursive" |> size 7 |> centered  |>filled black |> move (0,-45)
+      ,curve (18.601,-19.87) [Pull (10.8809,20.977) (-15.55,33.069)] |>outlined (solid 1) black |>move (7,-15) |> rotate 0.2
+      ,triangle 5 |>filled black |> rotate 1 |> move (-13,16) 
+      ]
+lvl3h=group
+      [ lvl3
+      ,circle 1 |> filled red |>move (-25,-30)
+      ,text "1: Place the center of the protractor on the red dot" |> customFont "cursive" |> size 7 |> centered  |>filled black |> move (0,25)
+      ,text "2: Measure in this Direction" |> customFont "cursive" |> size 7 |> centered  |>filled black |> move (0,-45)
+      ,curve (22.601,-19.87) [Pull (5.8809,25.977) (-48.55,36.069)] |>outlined (solid 1) black |>move (7,-15) |> rotate 0.2
+      ,triangle 5 |>filled black |> rotate 1 |> move (-45,12) 
+      ]
+lvl4h=group
+      [lvl4
+      ,text "Measure the smaller angle and calculate the other using :" |> customFont "cursive" |> size 6 |> centered  |>filled black |> move (0,26)
+      ,text "360 - A [Where A is the angle measure of the smaller angle]" |> customFont "cursive" |> size 6 |> centered  |>filled black |> move (0,-32)
+      ,text "The result will be the desired angle!" |> customFont "cursive" |> size 6 |> centered  |>filled black |> move (0,-45)
+      ]
+lvl5h=group
+      [lvl5
+      ,text "1: Place the center of the protractor on the red dot" |> customFont "cursive" |> size 7 |> centered  |>filled black |> move (0,25)
+      ,text "2: Measure in this Direction [Read black scale]" |> customFont "cursive" |> size 7 |> centered  |>filled black |> move (0,-45)
+      ,curve (22.601,-19.87) [Pull (5.8809,25.977) (-48.55,36.069)] |>outlined (solid 1) black |>mirrorX |>rotate 0.2 |>move (-75,-5)   |> scale 0.5
+      ,triangle 5 |>filled black |> rotate 0.75|> move(-17,20)
+      ,circle 1 |> filled red |>move (10,-14.8)
+      
+      ]
+lvl7h=group
+      [lvl7
+      ,text "Measure the 2 angles and calculate the third using:" |> customFont "cursive" |> size 6 |> centered  |>filled black |> move (0,28)
+      ,text "A+B+C=180 [Where A,B,C are the three angles of a triangle]" |> customFont "cursive" |> size 6 |> centered  |>filled black |> move (0,18)
+      ,text "then determine the type of triangle by looking at the angles." |> customFont "cursive" |> size 6 |> centered  |>filled black |> move (0,-45)
+      ]      
+lvl9h=group
+      [lvl9
+      ,text "Measure the 2 angles and calculate the third using:" |> customFont "cursive" |> size 6 |> centered  |>filled black |> move (0,28)
+      ,text "A+B+C=180 [Where A,B,C are the three angles of a triangle]" |> customFont "cursive" |> size 6 |> centered  |>filled black |> move (0,18)
+      ,text "then determine the type of triangle by looking at the angles." |> customFont "cursive" |> size 6 |> centered  |>filled black |> move (0,-45)
+      ,text "A trinagle can have multiple angle properties as well." |> customFont "cursive" |> size 6 |> centered  |>filled black |> move (0,-55)
+
+      ]      
+      
+      
+---------------------------------------------------Tutorial Page---------------------------------------------------------
+
+tutorialPage = group
+              [  
+              square 250
+                |> filled ( colour Blue)
+                
+              , rect 250 50
+                  |> filled (rgb 49 34 112)
+                  |> rotate (degrees 30)
+                  |> move (0,20)
+                  
+              , rect 250 10
+                  |> filled (rgb 49 34 112)
+                  |> rotate (degrees 30)
+                  |> move (0,-30)
+                  
+              ,rect 3 200
+                  |> filled (colour Lblue)
+                  |> move (90,0)
+                  
+             ,rect 3 200
+                  |> filled (colour Lblue)
+                  |> move (-90,0)
+                  
+             ,rect 260 3
+                  |> filled (colour Lblue)
+                  |> move (0,60)
+                  
+             ,rect 260 3
+                  |> filled (colour Lblue)
+                  |> move (0,-60)
+                  
+             ,text "Tutorial Page"
+                  |> customFont "cursive" 
+                  |> filled white
+                  |> move (-40,45)
+             ,button (rgb 230 125 50) "Back" TutorialPageToHome
+                  |> move (60,50)
+                   
+             ,button2 100 (rgb 121 161 255) "Tutorial 1: Angless!!!" TutorialPageToTutorial1
+                  |> move (-5,35)
+             
+             ,button2 100 (rgb 121 161 255) "Tutorial 2: What is a protractor???" TutorialPageToTutorial2
+                  |> move (-5,22)
+             
+             ,button2 100 (rgb 121 161 255) "Tutorial 3: How to use a protractor" TutorialPageToTutorial3
+                  |> move (-5,8)
+             
+             ,button2 100 (rgb 121 161 255) "Tutorial 4: Types of Triangles" TutorialPageToTutorial4
+                  |> move (-5,-7)
+             
+             ,button2 100 (rgb 121 161 255) "Tutorial 5: Anlgle Sum Property" TutorialPageToTutorial5
+                  |> move (-5,-22)
+             
+             ,button2 100 (rgb 121 161 255) "Tutorial 6: Complementary Angles" TutorialPageToTutorial6
+                  |> move (-5,-37)
+             
+             ,button2 100 (rgb 121 161 255) "Tutorial 7: Supplementary Angles " TutorialPageToTutorial7
+                  |> move (-5,-50)
+
+              ]
+              
+tut1 = group [
+                  roundedRect 100 100 5
+                   |> filled lightBlue,
+                   text "An angle is formed when two lines meet at a shared point."
+                   |> filled lightGray
+                   |> scale 0.3
+                   |> move(-45,40),
+                   text "They are measured in degrees, which are reprresented by the symbol °."
+                   |> filled lightGray
+                   |> scale 0.28
+                   |> move(-48,36),
+                   text "There are four important types of angle: acute, right, obtuse and reflex."
+                   |> filled lightGray
+                   |> scale 0.28
+                   |> move(-48,32),
+                   text "Here are some examples"
+                   |> filled lightGray
+                   |> scale 0.28
+                   |> move(-48,28),
+                   openPolygon [(0,-10),(10,-10)]
+                   |> outlined (solid 1) orange
+                   |> move(-20,20),
+                   openPolygon [(0,0),(0,-10)]
+                   |> outlined (solid 1) orange
+                   |> move(-20,20),
+                   text "Right Angle"
+                   |> filled yellow
+                   |> scale 0.3
+                   |> move(-22,5),
+                   openPolygon [(0,-10),(10,-10)]
+                   |> outlined (solid 1) orange
+                   |> move(10,20),
+                   openPolygon [(0,-10),(8,-5)]
+                   |> outlined (solid 1) orange
+                   |> move(10,20),
+                   text "Acute Angle"
+                   |> filled yellow
+                   |> scale 0.3
+                   |> move(12,5),
+                   openPolygon [(0,0),(10,0)]
+                   |> outlined (solid 1) orange
+                   |> move(-20,-30),
+                   openPolygon [(-6,2),(0,-10)]
+                   |> outlined (solid 1) orange
+                   |> move(-20,-20),
+                   text "Obtuse angle"
+                   |> filled yellow
+                   |> scale 0.3
+                   |> move(-22,-40),
+                   openPolygon [(0,0),(10,0)]
+                   |> outlined (solid 1) orange
+                   |> move(20,-30),
+                   openPolygon [(-6,-18),(0,-10)]
+                   |> outlined (solid 1) orange
+                   |> move(20,-20),
+                   text "Reflex angle"
+                   |> filled yellow
+                   |> scale 0.3
+                   |> move(22,-40)
+ 
+                 ]
+tut2 = group [
+                  roundedRect 120 150 27
+                   |> filled orange
+                   |> scale 1.3,
+                   text "What is a protractor?"
+                   |> filled lightGrey
+                   |> move (-50,50),
+                   text "A protractor is a clear plastic device to measure angles from 0 to 180 degrees."
+                   |> filled lightGrey
+                   |> scale 0.4
+                   |> move (-73,42),
+                   text "We can use a protractor to measure an angle in degrees."
+                   |> filled lightGrey
+                   |> scale 0.4
+                   |> move (-55,35),
+                   text "How to use a protractor?"
+                   |> filled lightGrey
+                   |> move (-58,20),
+                   text "Protractors usually have two sets of numbers going in opposite directions."
+                   |> filled lightGrey
+                   |> scale 0.4
+                   |> move (-73,11),
+                   text "A protractor is used to measure different angles by putting"
+                   |> filled lightGrey
+                   |> scale 0.4
+                   |> move (-73,4),
+                   text "the middle of the protractor where you want to measure. Then you measure"
+                   |> filled lightGrey
+                   |> scale 0.4
+                   |> move (-73,-3),
+                   text "the reading either inside or out."
+                   |> filled lightGrey
+                   |> scale 0.4
+                   |> move (-73,-10),
+                   text "Some tips for using the protractor:"
+                   |> filled lightGrey
+                   |> scale 0.87
+                   |> move (-73,-20),
+                   text "Your measure must be close to what you estimate. If you are expecting"
+                   |> filled lightGrey
+                   |> scale 0.4
+                   |> move (-73,-29),
+                   text "an acute angle and you end up with an obtuse one- do not panic! Try the other"
+                   |> filled lightGrey
+                   |> scale 0.4
+                   |> move (-73,-36),
+                   text "scale on the protractor! If the sides of your angle doesn't reach the scale of"
+                   |> filled lightGrey
+                   |> scale 0.4
+                   |> move (-73,-44),
+                   text "your protractor, extend them so that they do. Doing so increases the accuracy"
+                   |> filled lightGrey
+                   |> scale 0.4
+                   |> move (-73,-51),
+                   text "of your measure.The measure of your angle is always a positive number."
+                   |> filled lightGrey
+                   |> scale 0.4
+                   |> move (-73,-58)
+
+                   ]
+tut4 = group [  
+                   roundedRect 100 100 5
+                    |> filled blue
+                    |> scale 2,
+                    polygon [(0,0),(0,30),(20,0)]
+                    |> filled (rgb 230 125 50)
+                    |>scale 0.7
+                    |> move (-60,10),
+                    square 10
+                    |> filled lightGray
+                    |> scale 0.3
+                    |> move(-58.5,11.5),
+                    text "Types of triangles:"
+                     |> filled lightGray
+                     |> move (-45,65)
+                     |>scale 0.8,
+                     text "A right triangle has one 90° angle and a variety of often-studied topics:"
+                     |> filled lightGray
+                     |> move (-210,95)
+                     |>scale 0.4,
+                    text "The Equilateral triangle shown on the right above has three congruent sides and three congruent angles. Each angle is 60°."
+                     |> filled lightGray
+                     |> move (-290,0)
+                     |>scale 0.323,
+                     triangle 10
+                     |> filled lightGray
+                     |> rotate (degrees 210)
+                     |> scale 1.1
+                     |> move (30,18),
+                     oval 1 5
+                     |> filled orange
+                     |> rotate (degrees 45)
+                     |> move (25,20),
+                     oval 1 5
+                     |> filled orange
+                     |> rotate (degrees 150)
+                     |> move (35,20),
+                     oval 1 5
+                     |> filled orange
+                     |> move (30,12),
+                     curve (0,0) [Pull (-3,0) (6,-4)]
+                     |> filled red
+                     |> rotate (degrees 30)
+                     |> move(28,26),
+                     curve (0,0) [Pull (-3,0) (6,-4)]
+                     |> filled red
+                     |> rotate (degrees 150)
+                     |> move(24,12),
+                     curve (0,0) [Pull (-3,0) (6,-4)]
+                     |> filled red
+                     |> rotate (degrees 270)
+                     |> move(38,16),
+                     text "A scalene triangle is one where none of the sides are the same length."
+                     |> filled lightGray
+                     |> move (-230,-15)
+                     |> scale 0.4,
+                     polygon [(0,0),(3,-1),(4,1)]
+                     |> filled orange
+                     |> scale 4
+                     |> move(50,-6),
+                     text "An isosceles triangle is a triangle with two equal sides. Because of having two equal sides, two of the angles will be the same too."
+                     |> filled lightGray
+                     |> move (-310,-45)
+                     |> scale 0.3,
+                     polygon [(0,0),(15,10),(30,0)]
+                     |> filled lightGray
+                     |> scale 0.9
+                     |> move(-70,-30),
+                     curve (0,0) [Pull (-3,0) (6,-4)]
+                     |> filled red
+                     |> rotate (degrees 150)
+                     |> move(-66,-32),
+                     curve (0,0) [Pull (-3,0) (6,-4)]
+                     |> filled red
+                     |> rotate (degrees 270)
+                     |> move(-44,-27),
+                     oval 1 5
+                     |> filled orange
+                     |> rotate (degrees 150)
+                     |> move (-50,-25),
+                     oval 1 5
+                     |> filled orange
+                     |> rotate (degrees 45)
+                     |> move (-63,-25),
+                     text "An acute triangle (above right) is a triangle where all the interior angles are less than 90 degrees. "
+                     |> filled lightGray
+                     |> move (-230,-100)
+                     |> scale 0.4,
+                     polygon [(10,0),(-5,9),(13,26)]
+                     |> filled orange
+                     |> rotate (degrees 275)
+                     |> scale 0.9
+                     |> move(20,-23),
+                     text "An obtuse triangle is the opposite of an acute triangle in that it is a triangle where one angle is greater than 90˚."
+                     |> filled lightGray
+                     |> move (-270,-160)
+                     |> scale 0.35,
+                     polygon [(10,0),(7,9),(13,26)]
+                     |> filled lightGray
+                     |> rotate (degrees 275)
+                     |> move(-10,-30)
+                     |> scale 1.2
+             ]
+
+main = gameApp Tick { model = init, view = view, update = update, title = "Game Slot" }
+
+view model = collage 192 128 (myShapes model)
+
